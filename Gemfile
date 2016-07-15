@@ -20,6 +20,10 @@ gem 'high_voltage'
 gem 'sendgrid'
 gem 'therubyracer', :platform=>:ruby
 gem 'thin'
+gem 'rest-client'
+#gem 'mailgun-ruby', '~>1.0.5', require: 'mailgun'
+gem 'mailgun-ruby'
+
 group :development do
   gem 'better_errors'
   gem 'foreman'
