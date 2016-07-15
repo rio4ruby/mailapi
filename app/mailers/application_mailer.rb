@@ -7,10 +7,9 @@ class ApplicationMailer < ActionMailer::Base
   end
   
   def simple_text(params)
-    byebug
     @email = params[:to]
     @subject = params[:subject] || 'Howdy'
-    @text = params[:text]
+    @text = params[:body] || params[:text]
     @mailer = self.class.to_s
     mail(to: @email,
          subject: @subject,

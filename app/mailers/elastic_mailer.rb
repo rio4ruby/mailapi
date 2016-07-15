@@ -14,14 +14,4 @@ class ElasticMailer < ApplicationMailer
   end
 
   
-  def hello_email(email)
-    @email = email
-    @host = 'kitatdotnet.net'
-    mail(to: @email,
-         subject: "Hello There",
-         delivery_method_options: delivery_options)
-  end
-
-
-
 end

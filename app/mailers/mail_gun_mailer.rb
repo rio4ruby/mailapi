@@ -7,7 +7,7 @@ class MailGunMailer < ApplicationMailer
   def simple_text(params)
     @email = params[:to]
     @subject = params[:subject] || 'Howdy'
-    @text = params[:text]
+    @text = params[:body] || params[:text]
     @mailer = self.class.to_s
     @from = self.from
     
@@ -18,7 +18,8 @@ class MailGunMailer < ApplicationMailer
                     # :to => "Christopher Kleckner <christopher.kleckner@gmail.com>",
                     :subject => @subject,
                     :text => @text
-    p rtn
+    puts rtn
+    rtn
   end
 
   

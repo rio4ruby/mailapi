@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714034318) do
+ActiveRecord::Schema.define(version: 20160715035733) do
+
+  create_table "multi_mails", force: :cascade do |t|
+    t.string   "to"
+    t.string   "from"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

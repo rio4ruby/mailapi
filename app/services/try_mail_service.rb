@@ -9,17 +9,19 @@ class TryMailService
   end
 
   def try_mailer(mailer)
-    mailer.simple_text(@msg).deliver_now
-    puts "Successfully sent with #{mailer}"
-    true
+    rtn = mailer.simple_text(@msg).try(:deliver_now)
+    puts "Successfully sent with #{mailer} RTN=#{rtn.inspect}"
+    { response: rtn, mailer: mailer.to_s , result: :sent}
   rescue RestClient::BadRequest => e
     puts "Could not send with #{mailer}: #{e}"
-    false
+    { response: rtn, mailer: mailer.to_s , result: :failed, error: e.message}
   end
   
   def call
     @mailers.each do |mailer|
-      break if try_mailer(mailer)
+      resp = try_mailer(mailer)
+      return resp if resp[:result] == :sent
     end
+    { result: :failed, error: 'All mailers failed'}
   end
 end
